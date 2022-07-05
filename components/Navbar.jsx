@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
@@ -10,6 +10,19 @@ const Navbar = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+
+  useEffect(() => {
+    const changeColor = () => {
+      if (window.scrollY >= 90) {
+        setColor('#ffffff');
+        setTextColor('#000000');
+      } else {
+        setColor('transparent');
+        setTextColor('white');
+      }
+    };
+    window.addEventListener('scroll', changeColor);
+  }, []);
 
   return (
     <div
@@ -42,7 +55,7 @@ const Navbar = () => {
         {/* Mobile Button */}
         <div onClick={handleNav} className='block sm:hidden z-10'>
           {nav ? (
-            <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
+            <AiOutlineClose size={20} style={{ color: `${textColor}` }} />
           ) : (
             <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
           )}
