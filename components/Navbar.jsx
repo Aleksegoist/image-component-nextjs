@@ -4,18 +4,28 @@ import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [color, setColor] = useState('transparent');
+  const [textColor, setTextColor] = useState('white');
 
   const handleNav = () => {
     setNav(!nav);
   };
 
   return (
-    <div className='fixed left-0 top-0 w-full z-10 ease-in duration-300'>
+    <div
+      style={{ backgroundColor: `${color}` }}
+      className='fixed left-0 top-0 w-full z-10 ease-in duration-300'
+    >
       <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
         <Link href='/'>
-          <h1 className='font-bold text-4xl cursor-pointer'>AYDev.</h1>
+          <h1
+            style={{ color: `${textColor}` }}
+            className='font-bold text-4xl cursor-pointer'
+          >
+            AYDev.
+          </h1>
         </Link>
-        <ul className='hidden sm:flex'>
+        <ul style={{ color: `${textColor}` }} className='hidden sm:flex'>
           <li className='p-4'>
             <Link href='/'>Home</Link>
           </li>
@@ -30,8 +40,12 @@ const Navbar = () => {
           </li>
         </ul>
         {/* Mobile Button */}
-        <div className='block sm:hidden z-10'>
-          {nav ? <AiOutlineMenu size={20} /> : <AiOutlineMenu size={20} />}
+        <div onClick={handleNav} className='block sm:hidden z-10'>
+          {nav ? (
+            <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
+          ) : (
+            <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
+          )}
         </div>
         {/* Mobile Menu */}
         <div
